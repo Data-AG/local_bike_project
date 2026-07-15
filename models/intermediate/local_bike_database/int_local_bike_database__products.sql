@@ -1,4 +1,4 @@
-SELECT distinct
+SELECT
   p.product_id,
   p.product_name,
   b.brand_id,

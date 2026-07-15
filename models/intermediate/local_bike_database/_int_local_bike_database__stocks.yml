@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: int_local_bike_database__stocks
+    description: '{{ doc("int_local_bike_database__stocks") }}'
+    columns:
+      - name: stock_id
+        description: "Primary key of the stocks table."
+        tests:
+          - not_null
+          - unique
+      - name: store_id
+        description: "Foreign key to the stores table."
+        tests:
+          - not_null
+      - name: product_id
+        description: "Foreign key to the products table."
+        tests:
+          - not_null
+      - name: avg_monthly_sales
+        description: "total_quantity_sold / nb_months_since_first_sale. Displays 0 if null."
+      - name: months_coverage
+        description: "stock_quantity / avg_monthly_sales. NULL if product never sold."
