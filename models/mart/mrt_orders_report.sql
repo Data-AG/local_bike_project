@@ -8,9 +8,9 @@ SELECT
     EXTRACT(YEAR FROM order_date) AS order_year,
 
     CASE
-        WHEN order_status IN (1, 2) THEN 'En cours'
-        WHEN order_status = 3 THEN 'Annulée/Bloquée'
-        WHEN order_status = 4 THEN 'Expédiée'
+        WHEN order_status IN (1, 2) THEN 'In progress'
+        WHEN order_status = 3 THEN 'Cancelled/Blocked'
+        WHEN order_status = 4 THEN 'Shipped'
     END AS order_status_label,
     order_status = 4 AS is_completed,
 

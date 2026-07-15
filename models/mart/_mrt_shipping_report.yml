@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: mrt_shipping_report
+    description: '{{ doc("mrt_shipping_report") }}'
+    columns:
+      - name: order_id
+        description: "Primary key of the orders table."
+        tests:
+          - unique
+          - not_null
+      - name: store_id
+        description: "Foreign key to the stores table."
+        tests:
+          - not_null
+      - name: staff_id
+        description: "Foreign key to the staffs table."
+        tests:
+          - not_null
+      - name: days_to_ship
+        description: "Number of days between order_date and shipped_date."
+      - name: days_late
+        description: "Number of days between required_date and shipped_date. Negative if shipped early."
+      - name: shipping_status
+        description: "'To ship' if shipped_date is NULL, 'Late' if shipped_date > required_date, 'On time' otherwise."
+        tests:
+          - accepted_values:
+              arguments:
+                name: accepted_values_shipping_status
+                values: ['To ship', 'Late', 'On time']
