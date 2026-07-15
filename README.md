@@ -57,6 +57,7 @@ Join keys: `order_id` → `mrt_shipping_report`, `stock_id` (store × product su
 - `accepted_values` on `order_status`, `category_name`, `staff_active` and `shipping_status`
 - `accepted_range` on `order_items.quantity`, `order_items.discount` and `stocks.quantity`
 - singular tests : `assert_required_after_order`, `assert_shipped_after_order` and `assert_shipped_orders_have_shipped_date`
+- Add CI : dbt Cloud runs `dbt build` on every PR
 
 ## Link to the explanatory slide deck
 
