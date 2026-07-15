@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: int_local_bike_database__orders
+    description: '{{ doc("int_local_bike_database__orders") }}'
+    columns:
+      - name: order_id
+        description: "Primary key of the orders table."
+        tests:
+            - unique
+            - not_null
+      - name: store_id
+        description: "Foreign key to the stores table."
+        tests:
+          - not_null
+      - name: staff_id
+        description: "Foreign key to the staffs table."
+        tests:
+          - not_null
+      - name: customer_id
+        description: "Foreign key to the customers table."
+        tests:
+          - not_null
