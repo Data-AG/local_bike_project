@@ -75,3 +75,44 @@ models:
               arguments:
                 min_value: 0
                 max_value: 1
+
+  - name: stg_local_bike_database__orders
+    description: "This model contains the list of orders."
+    columns:
+      - name: order_id
+        description: "Primary key of the orders table."
+        tests:
+            - unique
+            - not_null
+      #- name : customer_id
+        #description: "Foreign key to the customers table."
+        #tests:
+          #- relationships:
+              #arguments:
+                #name: customer_id_id_foreign_key_in_stg_local_bike_database__orders
+                #to: ref('stg_local_bike_database__customers')
+                #field: customer_id
+      #- name: store_id
+        #description: "Foreign key to the stores table."
+        #tests:
+          #- relationships:
+              #arguments:
+                #name: store_id_id_foreign_key_in_stg_local_bike_database__orders
+                #to: ref('stg_local_bike_database__stores')
+                #field: store_id
+      #- name: staff_id
+        #description: "Foreign key to the staffs table."
+        #tests:
+          #- relationships:
+              #arguments:
+                #name: staff_id_id_foreign_key_in_stg_local_bike_database__orders
+                #to: ref('stg_local_bike_database__staffs')
+                #field: staff_id
+      - name : order_status
+        description: "Status of the order."
+        tests:
+          - accepted_values:
+              arguments:
+                name: accepted_values_order_status
+                values: [1,2,3,4]
+                quote: false
