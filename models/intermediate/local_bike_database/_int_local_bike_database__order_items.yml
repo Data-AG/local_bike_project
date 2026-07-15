@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: int_local_bike_database__order_items
+    description: '{{ doc("int_local_bike_database__order_items") }}'
+    columns:
+      - name: order_item_id
+        description: "Primary key of the order_item table."
+        tests:
+            - unique
+            - not_null
+      - name: order_id
+        description: "Foreign key to the orders table."
+        tests:
+          - not_null
+      - name: store_id
+        description: "Foreign key to the stores table."
+        tests:
+          - not_null
+      - name: product_id
+        description: "Foreign key to the products table."
+        tests:
+          - not_null
+      - name: customer_id
+        description: "Foreign key to the customers table."
+        tests:
+          - not_null
+      - name: total_discount
+        description: "Total discount : quantity * list_price * (discount)."
+      - name: total_paid
+        description: "Total paid : quantity * list_price * (1 - discount)."
