@@ -36,3 +36,42 @@ models:
         tests:
             - unique
             - not_null
+
+  - name: stg_local_bike_database__order_items
+    description: "This model contains the list of order items."
+    columns:
+      - name: order_item_id
+        description: "Primary key of the order items table."
+        tests:
+            - unique
+            - not_null
+      #- name : order_id
+        #description: "Foreign key to the orders table."
+        #tests:
+          #- relationships:
+              #arguments:
+                #name: order_id_id_foreign_key_in_stg_local_bike_database__order_items
+                #to: ref('stg_local_bike_database__orders')
+                #field: order_id
+      #- name: product_id
+        #description: "Foreign key to the products table."
+        #tests:
+          #- relationships:
+              #arguments:
+                #name: product_id_id_foreign_key_in_stg_local_bike_database__order_items
+                #to: ref('stg_local_bike_database__products')
+                #field: product_id
+      - name: quantity
+        description: "Quantity of the item order"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 1
+      - name: discount
+        description: "Discount on the item order"
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
