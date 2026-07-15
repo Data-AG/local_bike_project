@@ -8,7 +8,7 @@ SELECT
     staff_id,
     staff_name,
     DATE_DIFF(shipped_date, order_date, DAY) AS days_to_ship,
-    DATE_DIFF(shipped_date, required_date, DAY) AS days_late,
+    GREATEST(DATE_DIFF(shipped_date, required_date, DAY), 0) AS days_late,
     CASE
         WHEN shipped_date IS NULL THEN 'To ship'
         WHEN shipped_date > required_date THEN 'Late'
