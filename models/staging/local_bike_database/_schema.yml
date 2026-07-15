@@ -116,3 +116,28 @@ models:
                 name: accepted_values_order_status
                 values: [1,2,3,4]
                 quote: false
+
+  - name: stg_local_bike_database__products
+    description: "This model contains the list of products."
+    columns:
+      - name: product_id
+        description: "Primary key of the products table."
+        tests:
+            - unique
+            - not_null
+      #- name : brand_id
+        #description: "Foreign key to the brands table."
+        #tests:
+          #- relationships:
+              #arguments:
+                #name: brand_id_id_foreign_key_in_stg_local_bike_database__products
+                #to: ref('stg_local_bike_database__brands')
+                #field: brand_id
+      #- name : category_id
+        #description: "Foreign key to the categories table."
+        #tests:
+          #- relationships:
+              #arguments:
+                #name: category_id_id_foreign_key_in_stg_local_bike_database__products
+                #to: ref('stg_local_bike_database__categories')
+                #field: category_id
