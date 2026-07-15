@@ -1,0 +1,12 @@
+version: 2
+
+models:
+
+  - name: stg_local_bike_database__brands
+    description: "This model contains the dictionary of brands."
+    columns:
+      - name: brand_id
+        description: "Primary key of the brands table."
+        tests:
+            - unique
+            - not_null
