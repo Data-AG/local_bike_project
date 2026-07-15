@@ -1,19 +1,22 @@
-{% docs mrt_shipping_report %}
-## mrt_shipping_report
+{% docs mrt_orders_report %}
+## mrt_orders_report
 
-Shipping performance table, grain: 1 row = 1 order (`order_id`).
+Business-facing sales table, grain: 1 row = 1 order item (`order_item_id`).
 
-Derives from `int_local_bike_database__orders` only, with no join. Excludes cancelled/blocked orders (`order_status = 3`): shipping management is irrelevant for them. Scope therefore differs from `mrt_orders_report`, which keeps all statuses for revenue and cancellation analysis.
+Exposition layer on top of `int_local_bike_database__order_items`: a single parent, no join. Narrows the columns to what the dashboard consumes, translates codes into labels
+(`order_status_label`, `is_completed`), renames measures in business terms (`sales_amount`, `discount_amount`) and derives the analysis axes (`order_month`, `order_year`).
 
-Computes `days_to_ship`, `days_late` (negative if shipped early) — both NULL when `shipped_date` is NULL — and `shipping_status` ('To ship', 'Late', 'On time').
+Business decisions live here, not upstream: the intermediate layer stays exhaustive and
+neutral so that `int_local_bike_database__stocks` can reuse it.
 
-Late rate must be computed on shipped orders only: 'Late' / ('Late' + 'On time').
+**Join keys for the dashboard:**
 
-**Join key for the dashboard:**
-
-| Key | Source | Cardinality |
+| Key | Target | Cardinality |
 | --- | --- | --- |
-| `order_id` | `mrt_orders_report` | 1 → n |
+| `order_id` | `mrt_shipping_report` | n → 1 |
+| `stock_id` | `mrt_stocks_report` | n → 1 |
 
-Feeds: late rate by store and by month; average days to ship; orders pending shipment ('To ship' backlog).
+The stock relation is composite, so it has to be declared as such in the BI tool.
+
+Feeds: total revenue, order count, average basket, full price vs. discounted price — globally, by store, by staff, and by customer; top products globally and by store.
 {% enddocs %}

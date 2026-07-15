@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: mrt_stocks_report
+    description: '{{ doc("mrt_stocks_report") }}'
+    columns:
+      - name: stock_id
+        description: "Primary key of the stocks table."
+        tests:
+          - not_null
+          - unique
+      - name: store_id
+        description: "Foreign key to the stores table."
+        tests:
+          - not_null
+      - name: product_id
+        description: "Foreign key to the products table."
+        tests:
+          - not_null
+      - name: stock_value
+        description: "Value of the current stock on hand: stock_quantity × list_price."
+      - name: is_stock_out
+        description: "TRUE if stock_quantity = 0 for this store/product."
+      - name: overstock_risk
+        description: "TRUE if stock is present but never sold in this store, or stock coverage exceeds 6 months."

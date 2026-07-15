@@ -4,11 +4,12 @@ WITH sales_quantity AS (
         product_id,
         SUM(quantity) AS total_quantity_sold,
         DATE_DIFF(
-            (SELECT MAX(order_date) FROM {{ ref('int_local_bike_database__order_items') }}),
+            (SELECT MAX(order_date) FROM {{ ref('int_local_bike_database__order_items') }} WHERE order_status != 3),
             MIN(order_date),
             MONTH
         ) + 1 AS nb_months_first_sale
     FROM {{ ref('int_local_bike_database__order_items') }}
+    WHERE order_status != 3
     GROUP BY store_id, product_id
 ),
 stock_sales AS (
@@ -30,6 +31,7 @@ SELECT
     p.product_name,
     p.brand_name,
     p.category_name,
+    p.list_price,
     s.stock_quantity,
     s.avg_monthly_sales,
     SAFE_DIVIDE(s.stock_quantity, s.avg_monthly_sales) AS months_coverage
