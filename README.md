@@ -14,7 +14,7 @@ Data modelling for Local Bike, a bike shop chain (Santa Cruz, Baldwin, Rowlett).
 | Revenue / CA / Discounts | Which stores, staff and months drive revenue? | `mrt_orders_report` |
 | Average basket | Where do customers spend more per order, and why? | `mrt_orders_report` |
 | Shipping | Which orders are late, and which stores are responsible? | `mrt_shipping_report` |
-| Stock health | Which products are out of stock (lost sales) or sitting idle (tied-up cash)? | `mrt_stocks_report` |
+| Stock health | Which products are out of stock or sitting idle ? | `mrt_stocks_report` |
 
 ## Architecture
 
