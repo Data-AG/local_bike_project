@@ -166,3 +166,35 @@ models:
                 #name: accepted_values_staff_active_status
                 #values: [0,1]
                 #quote: false
+
+  - name: stg_local_bike_database__stocks
+    description: "This model contains the list of stock."
+    columns:
+      - name: stock_id
+        description: "Primary key of the stocks table."
+        tests:
+            - unique
+            - not_null
+      #- name : product_id
+        #description: "Foreign key to the products table."
+        #tests:
+          #- relationships:
+              #arguments:
+                #name: product_id_id_foreign_key_in_stg_local_bike_database__stocks
+                #to: ref('stg_local_bike_database__products')
+                #field: product_id
+      #- name : store_id
+        #description: "Foreign key to the stores table."
+        #tests:
+          #- relationships:
+              #arguments:
+                #name: store_id_id_foreign_key_in_stg_local_bike_database__stocks
+                #to: ref('stg_local_bike_database__stores')
+                #field: store_id
+      - name: quantity
+        description: "Quantity of the item stock"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
