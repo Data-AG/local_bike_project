@@ -141,3 +141,28 @@ models:
                 #name: category_id_id_foreign_key_in_stg_local_bike_database__products
                 #to: ref('stg_local_bike_database__categories')
                 #field: category_id
+
+  - name: stg_local_bike_database__staffs
+    description: "This model contains the list of staff."
+    columns:
+      - name: staff_id
+        description: "Primary key of the staffs table."
+        tests:
+            - unique
+            - not_null
+      #- name : store_id
+        #description: "Foreign key to the stores table."
+        #tests:
+          #- relationships:
+              #arguments:
+                #name: store_id_id_foreign_key_in_stg_local_bike_database__staffs
+                #to: ref('stg_local_bike_database__stores')
+                #field: store_id
+      #- name : active
+        #description: "Status of the staff"
+        #tests:
+          #- accepted_values:
+              #arguments:
+                #name: accepted_values_staff_active_status
+                #values: [0,1]
+                #quote: false
