@@ -1,0 +1,36 @@
+name: local_bike
+config-version: 2
+
+profile: local_bike
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  +persist_docs:
+      relation: true
+      columns: true
+
+  local_bike:
+
+    staging:
+      +materialized: view
+      local_bike_database:
+        +schema: stg_local_bike_database
+
+    intermediate:
+      +materialized: view
+      local_bike_database:
+        +schema: int_local_bike_database
+
+    mart:
+      +materialized: table
+      +schema: mart
