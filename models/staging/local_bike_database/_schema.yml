@@ -27,3 +27,12 @@ models:
               arguments:
                 name: accepted_values_stg_categories_category_name
                 values: ['Children Bicycles', 'Comfort Bicycles', 'Cruisers Bicycles', 'Cyclocross Bicycles', 'Electric Bikes', 'Mountain Bikes', 'Road Bikes']
+
+  - name: stg_local_bike_database__customers
+    description: "This model contains the list of customers."
+    columns:
+      - name: customer_id
+        description: "Primary key of the customers table."
+        tests:
+            - unique
+            - not_null
