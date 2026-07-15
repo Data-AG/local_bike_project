@@ -10,3 +10,20 @@ models:
         tests:
             - unique
             - not_null
+
+  - name: stg_local_bike_database__categories
+    description: "This model contains the dictionary of product categories."
+    columns:
+      - name: category_id
+        description: "Primary key of the product categories table."
+        tests:
+            - unique
+            - not_null
+      - name: category_name
+        description: "Name of the product category."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                name: accepted_values_stg_categories_category_name
+                values: ['Children Bicycles', 'Comfort Bicycles', 'Cruisers Bicycles', 'Cyclocross Bicycles', 'Electric Bikes', 'Mountain Bikes', 'Road Bikes']
