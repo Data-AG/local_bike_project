@@ -45,22 +45,22 @@ models:
         tests:
             - unique
             - not_null
-      #- name : order_id
-        #description: "Foreign key to the orders table."
-        #tests:
-          #- relationships:
-              #arguments:
-                #name: order_id_id_foreign_key_in_stg_local_bike_database__order_items
-                #to: ref('stg_local_bike_database__orders')
-                #field: order_id
-      #- name: product_id
-        #description: "Foreign key to the products table."
-        #tests:
-          #- relationships:
-              #arguments:
-                #name: product_id_id_foreign_key_in_stg_local_bike_database__order_items
-                #to: ref('stg_local_bike_database__products')
-                #field: product_id
+      - name : order_id
+        description: "Foreign key to the orders table."
+        tests:
+          - relationships:
+              arguments:
+                name: order_id_id_foreign_key_in_stg_local_bike_database__order_items
+                to: ref('stg_local_bike_database__orders')
+                field: order_id
+      - name: product_id
+        description: "Foreign key to the products table."
+        tests:
+          - relationships:
+              arguments:
+                name: product_id_id_foreign_key_in_stg_local_bike_database__order_items
+                to: ref('stg_local_bike_database__products')
+                field: product_id
       - name: quantity
         description: "Quantity of the item order"
         tests:
@@ -84,30 +84,30 @@ models:
         tests:
             - unique
             - not_null
-      #- name : customer_id
-        #description: "Foreign key to the customers table."
-        #tests:
-          #- relationships:
-              #arguments:
-                #name: customer_id_id_foreign_key_in_stg_local_bike_database__orders
-                #to: ref('stg_local_bike_database__customers')
-                #field: customer_id
-      #- name: store_id
-        #description: "Foreign key to the stores table."
-        #tests:
-          #- relationships:
-              #arguments:
-                #name: store_id_id_foreign_key_in_stg_local_bike_database__orders
-                #to: ref('stg_local_bike_database__stores')
-                #field: store_id
-      #- name: staff_id
-        #description: "Foreign key to the staffs table."
-        #tests:
-          #- relationships:
-              #arguments:
-                #name: staff_id_id_foreign_key_in_stg_local_bike_database__orders
-                #to: ref('stg_local_bike_database__staffs')
-                #field: staff_id
+      - name : customer_id
+        description: "Foreign key to the customers table."
+        tests:
+          - relationships:
+              arguments:
+                name: customer_id_id_foreign_key_in_stg_local_bike_database__orders
+                to: ref('stg_local_bike_database__customers')
+                field: customer_id
+      - name: store_id
+        description: "Foreign key to the stores table."
+        tests:
+          - relationships:
+              arguments:
+                name: store_id_id_foreign_key_in_stg_local_bike_database__orders
+                to: ref('stg_local_bike_database__stores')
+                field: store_id
+      - name: staff_id
+        description: "Foreign key to the staffs table."
+        tests:
+          - relationships:
+              arguments:
+                name: staff_id_id_foreign_key_in_stg_local_bike_database__orders
+                to: ref('stg_local_bike_database__staffs')
+                field: staff_id
       - name : order_status
         description: "Status of the order."
         tests:
@@ -125,22 +125,22 @@ models:
         tests:
             - unique
             - not_null
-      #- name : brand_id
-        #description: "Foreign key to the brands table."
-        #tests:
-          #- relationships:
-              #arguments:
-                #name: brand_id_id_foreign_key_in_stg_local_bike_database__products
-                #to: ref('stg_local_bike_database__brands')
-                #field: brand_id
-      #- name : category_id
-        #description: "Foreign key to the categories table."
-        #tests:
-          #- relationships:
-              #arguments:
-                #name: category_id_id_foreign_key_in_stg_local_bike_database__products
-                #to: ref('stg_local_bike_database__categories')
-                #field: category_id
+      - name : brand_id
+        description: "Foreign key to the brands table."
+        tests:
+          - relationships:
+              arguments:
+                name: brand_id_id_foreign_key_in_stg_local_bike_database__products
+                to: ref('stg_local_bike_database__brands')
+                field: brand_id
+      - name : category_id
+        description: "Foreign key to the categories table."
+        tests:
+          - relationships:
+              arguments:
+                name: category_id_id_foreign_key_in_stg_local_bike_database__products
+                to: ref('stg_local_bike_database__categories')
+                field: category_id
 
   - name: stg_local_bike_database__staffs
     description: "This model contains the list of staff."
@@ -150,22 +150,22 @@ models:
         tests:
             - unique
             - not_null
-      #- name : store_id
-        #description: "Foreign key to the stores table."
-        #tests:
-          #- relationships:
-              #arguments:
-                #name: store_id_id_foreign_key_in_stg_local_bike_database__staffs
-                #to: ref('stg_local_bike_database__stores')
-                #field: store_id
-      #- name : active
-        #description: "Status of the staff"
-        #tests:
-          #- accepted_values:
-              #arguments:
-                #name: accepted_values_staff_active_status
-                #values: [0,1]
-                #quote: false
+      - name : store_id
+        description: "Foreign key to the stores table."
+        tests:
+          - relationships:
+              arguments:
+                name: store_id_id_foreign_key_in_stg_local_bike_database__staffs
+                to: ref('stg_local_bike_database__stores')
+                field: store_id
+      - name : staff_active
+        description: "Status of the staff"
+        tests:
+          - accepted_values:
+              arguments:
+                name: accepted_values_staff_active_status
+                values: [0,1]
+                quote: false
 
   - name: stg_local_bike_database__stocks
     description: "This model contains the list of stock."
@@ -175,22 +175,22 @@ models:
         tests:
             - unique
             - not_null
-      #- name : product_id
-        #description: "Foreign key to the products table."
-        #tests:
-          #- relationships:
-              #arguments:
-                #name: product_id_id_foreign_key_in_stg_local_bike_database__stocks
-                #to: ref('stg_local_bike_database__products')
-                #field: product_id
-      #- name : store_id
-        #description: "Foreign key to the stores table."
-        #tests:
-          #- relationships:
-              #arguments:
-                #name: store_id_id_foreign_key_in_stg_local_bike_database__stocks
-                #to: ref('stg_local_bike_database__stores')
-                #field: store_id
+      - name : product_id
+        description: "Foreign key to the products table."
+        tests:
+          - relationships:
+              arguments:
+                name: product_id_id_foreign_key_in_stg_local_bike_database__stocks
+                to: ref('stg_local_bike_database__products')
+                field: product_id
+      - name : store_id
+        description: "Foreign key to the stores table."
+        tests:
+          - relationships:
+              arguments:
+                name: store_id_id_foreign_key_in_stg_local_bike_database__stocks
+                to: ref('stg_local_bike_database__stores')
+                field: store_id
       - name: quantity
         description: "Quantity of the item stock"
         tests:
@@ -198,3 +198,12 @@ models:
           - dbt_utils.accepted_range:
               arguments:
                 min_value: 0
+
+  - name: stg_local_bike_database__stores
+    description: "This model contains the list of stores."
+    columns:
+      - name: store_id
+        description: "Primary key of the stores table."
+        tests:
+            - unique
+            - not_null
