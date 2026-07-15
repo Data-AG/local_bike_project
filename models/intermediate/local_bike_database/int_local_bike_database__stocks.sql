@@ -7,7 +7,7 @@ WITH sales_quantity AS (
             (SELECT MAX(order_date) FROM {{ ref('int_local_bike_database__order_items') }} WHERE order_status != 3),
             MIN(order_date),
             MONTH
-        ) + 1 AS nb_months_first_sale
+        ) + 1 AS nb_months_sale
     FROM {{ ref('int_local_bike_database__order_items') }}
     WHERE order_status != 3
     GROUP BY store_id, product_id
@@ -18,7 +18,7 @@ stock_sales AS (
         s.store_id,
         s.product_id,
         s.quantity AS stock_quantity,
-        COALESCE(SAFE_DIVIDE(sq.total_quantity_sold, sq.nb_months_first_sale), 0) AS avg_monthly_sales
+        COALESCE(SAFE_DIVIDE(sq.total_quantity_sold, sq.nb_months_sale), 0) AS avg_monthly_sales
     FROM {{ ref('stg_local_bike_database__stocks') }} s
     LEFT JOIN sales_quantity sq
         ON s.store_id = sq.store_id AND s.product_id = sq.product_id
