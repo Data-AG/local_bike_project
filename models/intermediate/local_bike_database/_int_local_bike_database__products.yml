@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: int_local_bike_database__products
+    description: '{{ doc("int_local_bike_database__products") }}'
+    columns:
+      - name: product_id
+        description: "Primary key of the products table."
+        tests:
+            - unique
+            - not_null
+      - name: brand_id
+        description: "Foreign key to the brands table."
+        tests:
+            - not_null
+      - name: category_id
+        description: "Foreign key to the categories table."
+        tests:
+            - not_null
